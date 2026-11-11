@@ -1,0 +1,18 @@
+{
+  "name": "مسار 17",
+  "short_name": "مسار 17",
+  "description": "برنامج البكالوريا اليومي: الحصص، الورد، سلسلة الرياضيات، ومعدل الأسبوع.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#11111c",
+  "theme_color": "#161a45",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
