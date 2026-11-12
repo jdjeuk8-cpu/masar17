@@ -1,5 +1,5 @@
 // مسار 17 — offline cache. Bump VERSION when the app files change.
-const VERSION = 'masar17-v2';
+const VERSION = 'masar17-v3';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', e => {

@@ -199,6 +199,38 @@ table.wk{border-collapse:separate;border-spacing:0;width:100%;min-width:940px;fo
 .wi.done{opacity:.5;text-decoration:line-through}
 .wi.opt{border-inline-start-style:dashed}
 
+/* ---------- progress ---------- */
+.prog{display:flex;flex-direction:column;gap:16px}
+.prog-grid{display:grid;grid-template-columns:1fr;gap:16px}
+.pcur{gap:14px}
+.pcur .top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.pcur .big{font-family:var(--f-display);font-size:52px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.pcur .range{font-size:13px;color:var(--muted)}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:500;background:var(--surface-2)}
+.pill svg{width:15px;height:15px}
+.pill.good{color:var(--ok)}.pill.mid{color:var(--gold)}.pill.low{color:var(--danger)}.pill.none{color:var(--muted)}
+.minis{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.mini{background:var(--surface-2);border-radius:14px;padding:10px 12px}
+.mini b{display:block;font-family:var(--f-display);font-size:20px;font-variant-numeric:tabular-nums}
+.mini small{font-size:12px;color:var(--muted)}
+.chart{width:100%;height:auto;display:block;overflow:visible}
+.chart text{font-family:var(--f-display);font-size:11px;fill:var(--muted)}
+.chart .lbl{fill:var(--ink);font-weight:600}
+.chart .hit{fill:transparent;cursor:pointer}
+.chart .hit:focus-visible{outline:none;stroke:var(--primary);stroke-width:2}
+.hbar{display:grid;grid-template-columns:76px 1fr auto;gap:10px;align-items:center;font-size:13px}
+.hbar .nm{display:flex;align-items:center;gap:6px;color:var(--ink)}
+.hbar .nm i{width:8px;height:8px;border-radius:50%;background:var(--c);flex:none}
+.hbar .tr{height:10px;border-radius:5px;background:var(--surface-2);overflow:hidden}
+.hbar .tr span{display:block;height:100%;border-radius:5px;background:var(--primary)}
+.hbar .v{font-family:var(--f-display);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;min-width:52px;text-align:end}
+.tview summary{cursor:pointer;font-size:13px;color:var(--primary)}
+.tview table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+.tview th,.tview td{text-align:start;padding:6px 4px;border-bottom:1px solid var(--line)}
+.tview td.n{font-family:var(--f-display);font-variant-numeric:tabular-nums}
+.empty{font-size:13px;color:var(--muted);text-align:center;padding:20px 0}
+@media (min-width:900px){.prog-grid{grid-template-columns:1fr 1fr}.prog-grid .wide{grid-column:1/-1}}
+
 /* ---------- nav ---------- */
 .tabbar{position:fixed;inset:auto 0 0 0;z-index:20;padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;justify-content:center;background:linear-gradient(transparent,var(--bg) 45%);pointer-events:none}
 .tabbar .bar{pointer-events:auto;width:100%;max-width:460px;display:flex;gap:4px;padding:6px;border-radius:22px;background:var(--surface);box-shadow:0 10px 30px rgba(10,8,25,.18),0 0 0 1px var(--line)}
@@ -269,6 +301,7 @@ table.wk{border-collapse:separate;border-spacing:0;width:100%;min-width:940px;fo
     <nav>
       <button class="navbtn" data-nav="day"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>اليوم</button>
       <button class="navbtn" data-nav="week"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M9 9v12M15 9v12M8 2v4M16 2v4"/></svg>الأسبوع</button>
+      <button class="navbtn" data-nav="progress"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V13M10 20V8M16 20v-5M22 20H2"/><path d="M4 9l6-4 6 5 5-4"/></svg>التقدّم</button>
       <button class="navbtn" data-nav="edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/></svg>تعديل البرنامج</button>
       <button class="navbtn" data-nav="more"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>المواقيت والنسخة</button>
     </nav>
@@ -362,6 +395,29 @@ table.wk{border-collapse:separate;border-spacing:0;width:100%;min-width:940px;fo
       </div>
       <div class="tablewrap"><table class="wk" id="wkTable"></table></div>
     </section>
+
+    <!-- PROGRESS -->
+    <section class="prog" id="progView" hidden>
+      <div class="wk-head"><div><h2>التقدّم الأسبوعي</h2><p>نسبة الإنجاز لكل أسبوع · الهدف 80%</p></div></div>
+      <div class="prog-grid">
+        <div class="card pcur" id="pCur"></div>
+        <div class="card">
+          <h2>كل الأسابيع</h2>
+          <p>اضغط على أسبوع لترى تفاصيله.</p>
+          <svg class="chart" id="pChart" viewBox="0 0 600 230" role="img" aria-label="نسبة الإنجاز لكل أسبوع"></svg>
+          <details class="tview"><summary>عرض كجدول</summary><table id="pTable"></table></details>
+        </div>
+        <div class="card">
+          <h2>أيام الأسبوع المختار</h2>
+          <svg class="chart" id="pDays" viewBox="0 0 600 190" role="img" aria-label="نسبة الإنجاز لكل يوم"></svg>
+        </div>
+        <div class="card">
+          <h2>حسب نوع الحصة</h2>
+          <p>الحصص المنجزة من المحسوبة في الأسبوع المختار.</p>
+          <div id="pTags" style="display:flex;flex-direction:column;gap:10px"></div>
+        </div>
+      </div>
+    </section>
   </main>
 </div>
 
@@ -369,6 +425,7 @@ table.wk{border-collapse:separate;border-spacing:0;width:100%;min-width:940px;fo
   <div class="bar">
     <button class="tab" data-nav="day"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>اليوم</button>
     <button class="tab" data-nav="week"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M9 9v12M15 9v12M8 2v4M16 2v4"/></svg>الأسبوع</button>
+    <button class="tab" data-nav="progress"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V13M10 20V8M16 20v-5M22 20H2"/><path d="M4 9l6-4 6 5 5-4"/></svg>التقدّم</button>
     <button class="tab" data-nav="edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/></svg>تعديل</button>
     <button class="tab" data-nav="more"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>المزيد</button>
   </div>
@@ -614,11 +671,12 @@ function render(){
   $('editBanner').hidden=!editing;
   $('dayView').hidden=view!=='day';
   $('weekView').hidden=view!=='week';
+  $('progView').hidden=view!=='progress';
   const dow=parse(sel).getDay();
   $('editTxt').textContent=view==='week'?'وضع التعديل: اضغط على حصة لتعديلها، أو + لإضافة حصة.':'وضع التعديل: التغييرات تُطبّق على كل أيام '+DAYS[dow]+'.';
   $('todayTxt').textContent=new Date().toLocaleDateString('ar-DZ',{weekday:'long',day:'numeric',month:'long'});
   renderArc(); renderHero();
-  if(view==='day')renderDay();else renderWeek();
+  if(view==='day')renderDay();else if(view==='week')renderWeek();else renderProgress();
 }
 
 let curFocus=null;
@@ -690,6 +748,79 @@ function renderWeek(){
     h+='</tr>';
   });
   $('wkTable').innerHTML=h+'</tbody>';
+}
+
+// ---------- weekly progress ----------
+const weekStart=k=>addDays(k,-parse(k).getDay());
+let selWeek=null;
+function firstUse(){
+  const ks=Object.keys(days).filter(k=>/^\d{4}-\d{2}-\d{2}$/.test(k)&&days[k]&&days[k].done&&Object.keys(days[k].done).length).sort();
+  return ks[0]||todayKey();
+}
+function weekStats(ws){
+  const tk=todayKey(),fu=firstUse(),tags={};
+  let sum=0,n=0,done=0,total=0,math=0,hifz=0;const list=[];
+  for(let i=0;i<7;i++){
+    const k=addDays(ws,i),inRange=k<=tk&&k>=fu,st=stats(k);
+    list.push({k,i,pct:st.pct,inRange});
+    if(!inRange)continue;
+    sum+=st.pct;n++;done+=st.done;total+=st.total;
+    const doc=dayDoc(k),dn=doc.done||{};
+    if(dn.math)math++; if(dn.hifz)hifz++;
+    counted(parse(k).getDay(),doc).forEach(it=>{const t=TAGS[it.tag]?it.tag:'study';tags[t]=tags[t]||{d:0,t:0};tags[t].t++;if(dn[it.id])tags[t].d++});
+  }
+  return{ws,avg:n?Math.round(sum/n):null,n,done,total,math,hifz,list,tags};
+}
+const dm=k=>{const d=parse(k);return d.getDate()+'/'+(d.getMonth()+1)};
+function status(p){
+  if(p==null)return['none','لا توجد بيانات بعد','M12 8v5M12 16h.01'];
+  if(p>=80)return['good','على الهدف','M5 12.5l4.5 4L19 7'];
+  if(p>=60)return['mid','قريب من الهدف','M12 8v5M12 16h.01'];
+  return['low','تحت الهدف','M12 7v6M12 17h.01'];
+}
+function barPath(x,y,w,h,r){if(h<=0)return'';r=Math.min(r,h,w/2);return'M'+x+' '+(y+h)+'V'+(y+r)+'Q'+x+' '+y+' '+(x+r)+' '+y+'H'+(x+w-r)+'Q'+(x+w)+' '+y+' '+(x+w)+' '+(y+r)+'V'+(y+h)+'Z'}
+function renderProgress(){
+  const tk=todayKey(),cur=weekStart(tk),first=weekStart(firstUse());
+  const weeks=[];for(let w=first;w<=cur;w=addDays(w,7))weeks.push(w);
+  const shown=weeks.slice(-12);
+  if(!selWeek||!shown.includes(selWeek))selWeek=cur;
+  const all=shown.map(weekStats),S=all.find(s=>s.ws===selWeek)||all[all.length-1];
+  // summary card
+  const st=status(S.avg),end=addDays(S.ws,6);
+  $('pCur').innerHTML='<div class="top"><div><div class="range">'+(S.ws===cur?'هذا الأسبوع':'أسبوع')+' · من '+dm(S.ws)+' إلى '+dm(end)+'</div><div class="big">'+(S.avg==null?'—':S.avg+'%')+'</div></div><span class="pill '+st[0]+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="'+st[2]+'"/></svg>'+st[1]+'</span></div>'+
+    '<div class="minis"><div class="mini"><b>'+S.done+' من '+S.total+'</b><small>حصة منجزة</small></div><div class="mini"><b>'+S.math+' من '+S.n+'</b><small>أيام بتمرين رياضيات</small></div><div class="mini"><b>'+S.hifz+' من '+S.n+'</b><small>أيام الورد الصباحي</small></div><div class="mini"><b>'+S.n+'</b><small>أيام محسوبة'+(S.ws===cur?' حتى اليوم':'')+'</small></div></div>';
+  // weeks chart (oldest on the right, newest on the left: RTL reading order)
+  const W=Math.max(280,Math.round($('pChart').getBoundingClientRect().width)||600),H=230,top=26,bot=30,L=36,R=8,ph=H-top-bot,pw=W-L-R,N=shown.length;
+  $('pChart').setAttribute('viewBox','0 0 '+W+' '+H);$('pDays').setAttribute('viewBox','0 0 '+W+' 190');
+  const slot=pw/Math.max(N,4),bw=Math.max(10,Math.min(40,slot-8));
+  const y=v=>top+ph*(1-v/100);
+  let s='';
+  [0,50,100].forEach(v=>{s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y(v)+'" y2="'+y(v)+'" stroke="var(--line)" stroke-width="1"/><text x="'+(L-6)+'" y="'+(y(v)+4)+'" text-anchor="end">'+v+'%</text>'});
+  all.forEach((w,i)=>{
+    const cx=W-R-slot*(i+0.5),x=cx-bw/2,v=w.avg||0,h=ph*v/100,selD=w.ws===S.ws;
+    const fill=v>=80?'var(--ok)':'var(--primary)';
+    s+='<path d="'+barPath(x,y(v),bw,h,4)+'" fill="'+fill+'" opacity="'+(selD?1:.45)+'"/>';
+    if(selD||w.ws===cur)s+='<text class="lbl" x="'+cx+'" y="'+(y(v)-7)+'" text-anchor="middle">'+(w.avg==null?'—':w.avg+'%')+'</text>';
+    s+='<text x="'+cx+'" y="'+(H-10)+'" text-anchor="middle"'+(selD?' class="lbl"':'')+'>'+dm(w.ws)+'</text>';
+    s+='<rect class="hit" data-wk="'+w.ws+'" tabindex="0" x="'+(cx-slot/2)+'" y="'+top+'" width="'+slot+'" height="'+(ph+bot)+'"><title>أسبوع '+dm(w.ws)+': '+(w.avg==null?'لا بيانات':w.avg+'%')+' · '+w.done+' من '+w.total+' حصة</title></rect>';
+  });
+  s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y(80)+'" y2="'+y(80)+'" stroke="var(--ok)" stroke-width="1.5" stroke-dasharray="5 4"/><text x="'+(L+4)+'" y="'+(y(80)-6)+'" style="fill:var(--ok)">الهدف 80%</text>';
+  $('pChart').innerHTML=s;
+  $('pTable').innerHTML='<thead><tr><th>الأسبوع</th><th>النسبة</th><th>الحصص</th></tr></thead><tbody>'+all.slice().reverse().map(w=>'<tr><td>'+dm(w.ws)+' – '+dm(addDays(w.ws,6))+'</td><td class="n">'+(w.avg==null?'—':w.avg+'%')+'</td><td class="n">'+w.done+' من '+w.total+'</td></tr>').join('')+'</tbody>';
+  // days of selected week
+  const DH=190,dtop=22,dbot=30,dph=DH-dtop-dbot,dslot=(W-L-R)/7,dbw=Math.max(12,Math.min(44,dslot-14)),dy=v=>dtop+dph*(1-v/100);
+  let ds='';
+  [0,100].forEach(v=>{ds+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+dy(v)+'" y2="'+dy(v)+'" stroke="var(--line)" stroke-width="1"/><text x="'+(L-6)+'" y="'+(dy(v)+4)+'" text-anchor="end">'+v+'%</text>'});
+  ds+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+dy(80)+'" y2="'+dy(80)+'" stroke="var(--ok)" stroke-width="1.5" stroke-dasharray="5 4"/>';
+  S.list.forEach(d=>{const cx=W-R-dslot*(d.i+0.5),v=d.inRange?d.pct:0;
+    ds+='<path d="'+barPath(cx-dbw/2,dy(v),dbw,dph*v/100,4)+'" fill="'+(v>=80?'var(--ok)':'var(--primary)')+'"/>';
+    ds+='<text class="lbl" x="'+cx+'" y="'+(dy(v)-6)+'" text-anchor="middle">'+(d.inRange?d.pct+'%':'')+'</text>';
+    ds+='<text x="'+cx+'" y="'+(DH-10)+'" text-anchor="middle"'+(d.k===tk?' class="lbl"':'')+'>'+SHORT[d.i]+'</text>';
+    ds+='<rect class="hit" data-day="'+d.k+'" x="'+(cx-dslot/2)+'" y="'+dtop+'" width="'+dslot+'" height="'+(dph+dbot)+'"><title>'+DAYS[d.i]+' '+dm(d.k)+': '+(d.inRange?d.pct+'%':'لم يُحسب')+'</title></rect>';});
+  $('pDays').innerHTML=ds;
+  // by type
+  const tg=Object.keys(TAGS).filter(k=>S.tags[k]&&S.tags[k].t);
+  $('pTags').innerHTML=tg.length?tg.map(k=>{const v=S.tags[k],p=Math.round(v.d/v.t*100);return'<div class="hbar" style="--c:var('+TAGS[k][1]+')"><span class="nm"><i></i>'+TAGS[k][0]+'</span><span class="tr"><span style="width:'+p+'%"></span></span><span class="v">'+v.d+' من '+v.t+'</span></div>'}).join(''):'<div class="empty">علّم أول حصة في «اليوم» وستظهر هنا.</div>';
 }
 
 // ---------- actions ----------
@@ -777,10 +908,12 @@ document.addEventListener('click',e=>{
   if(e.target.closest('.sheet'))return;
   const nav=e.target.closest('[data-nav]');
   if(nav){const v=nav.dataset.nav;
-    if(v==='edit'){editing=!editing;resetDisarm()}
+    if(v==='edit'){editing=!editing;resetDisarm();if(view==='progress')view='day'}
     else if(v==='more'){openMore();return}
     else{view=v;window.scrollTo(0,0)}
     render();return}
+  const wk=e.target.closest('[data-wk]');if(wk){selWeek=wk.dataset.wk;render();return}
+  const dd=e.target.closest('[data-day]');if(dd){sel=dd.dataset.day;view='day';render();window.scrollTo(0,0);return}
   const up=e.target.closest('[data-up]');if(up){move(up.dataset.up,-1);return}
   const dn=e.target.closest('[data-down]');if(dn){move(dn.dataset.down,1);return}
   const add=e.target.closest('[data-add]');if(add){openForm('add',parse(sel).getDay(),null,add.dataset.add||undefined);return}
@@ -817,6 +950,7 @@ if('serviceWorker' in navigator){
   navigator.serviceWorker.register('./sw.js').catch(()=>{});
 }
 window.addEventListener('storage',e=>{if(e.key===LS){loadLocal();if(!form)render()}});
+let rzT;window.addEventListener('resize',()=>{clearTimeout(rzT);rzT=setTimeout(()=>{if(view==='progress')renderProgress()},150)});
 })();
 </script>
 </body>
